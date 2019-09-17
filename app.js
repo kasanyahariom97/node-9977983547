@@ -19,14 +19,16 @@ app.get('/', (req, res) => {
 
 require("./app/routes/note.routes")(app);
 
-app.listen(3001, () => {
-   console.log("Server Running At 3001");
-});
-
 mongoose.connect(dbConfig.url, {
    useNewUrlParser: true
 }).then((data) => {
    console.log("Success")
 }).catch(e => {
    console.log("Error " + e);
+});
+
+const PORT = process.env.PORT || 3001
+
+app.listen(PORT, () => {
+   console.log("Server Running At 3001");
 });
